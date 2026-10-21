@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HCI Report – Tarun Kumar Bajotra Portfolio</title>
+  <meta name="description" content="Human-Computer Interaction evaluation report for the Tarun Kumar Bajotra portfolio website, applying Shneiderman, Norman, Nielsen guidelines and KLM/Fitts/Hick-Hyman models.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Tokens ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #fdf8f2;
+      --paper:    #f5efe6;
+      --ink:      #1a1410;
+      --ink-soft: #3d3028;
+      --muted:    #7a6858;
+      --rule:     #d6c9b8;
+      --accent:   #c4622d;
+      --accent2:  #4a7c59;
+      --gold:     #b8972e;
+      --highlight:#fff3cd;
+      --font-body: 'Crimson Pro', Georgia, serif;
+      --font-ui:   'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    /* ── Document wrapper ──────────────────────────────────────── */
+    .doc {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 80px 48px 120px;
+    }
+
+    @media (max-width: 640px) {
+      .doc { padding: 48px 24px 80px; }
+    }
+
+    /* ── Cover ─────────────────────────────────────────────────── */
+    .cover {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 36px;
+      margin-bottom: 64px;
+    }
+
+    .cover-kicker {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .cover h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .cover-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .cover-meta {
+      margin-top: 28px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .cover-meta-item {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cover-meta-item span {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      margin-top: 2px;
+    }
+
+    /* ── Sections ──────────────────────────────────────────────── */
+    .report-section {
+      margin-bottom: 64px;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    .report-section.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .section-number {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    h2.section-title {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+    }
+
+    h3.sub-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin: 32px 0 12px;
+    }
+
+    p { margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+
+    strong { font-weight: 700; color: var(--ink); }
+    em { font-style: italic; }
+
+    /* ── Lists ─────────────────────────────────────────────────── */
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 6px; }
+
+    /* ── Callout box ───────────────────────────────────────────── */
+    .callout {
+      background: var(--paper);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 6px 6px 0;
+      margin: 24px 0;
+      font-size: 1rem;
+    }
+    .callout.green { border-left-color: var(--accent2); }
+    .callout.gold  { border-left-color: var(--gold); }
+
+    /* ── Interface diagram box ─────────────────────────────────── */
+    .interface-diagram {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.9;
+      color: var(--ink-soft);
+    }
+
+    .interface-diagram .region {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 6px 0;
+      border-bottom: 1px dotted var(--rule);
+    }
+    .interface-diagram .region:last-child { border-bottom: none; }
+
+    .region-label {
+      background: var(--ink);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .region-label.overlay { background: var(--accent); }
+
+    /* ── Tables ────────────────────────────────────────────────── */
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 28px;
+      font-size: 0.95rem;
+    }
+
+    .report-table thead th {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 2px solid var(--ink);
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .report-table tbody td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .report-table tbody tr:last-child td { border-bottom: none; }
+    .report-table tbody tr:hover { background: var(--paper); }
+
+    .report-table td.val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .report-table td.val.green { color: var(--accent2); }
+
+    /* ── Inline code ───────────────────────────────────────────── */
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.82em;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--accent);
+    }
+
+    /* ── Pull-quote ────────────────────────────────────────────── */
+    .pull-quote {
+      border-top: 3px solid var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding: 20px 0;
+      margin: 36px 0;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--ink-soft);
+      text-align: center;
+      line-height: 1.55;
+    }
+
+    /* ── Pill tags ─────────────────────────────────────────────── */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 20px; }
+    .tag {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── Metric cards ──────────────────────────────────────────── */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .metric-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .metric-card .val {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--font-ui);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .metric-card .lbl {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Gulf boxes ────────────────────────────────────────────── */
+    .gulf-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    @media (max-width: 540px) { .gulf-grid { grid-template-columns: 1fr; } }
+
+    .gulf-box {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .gulf-box h4 {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .gulf-box p { font-size: 0.95rem; margin: 0; }
+
+    /* ── Highlight ─────────────────────────────────────────────── */
+    .hi { background: var(--highlight); padding: 0 3px; border-radius: 2px; }
+
+    /* ── TOC ───────────────────────────────────────────────────── */
+    .toc {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 56px;
+    }
+    .toc-title {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .toc ol { padding-left: 20px; margin: 0; }
+    .toc li { margin-bottom: 4px; }
+    .toc a { color: var(--ink-soft); text-decoration: none; font-size: 1rem; }
+    .toc a:hover { color: var(--accent); }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    .report-footer {
+      margin-top: 80px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .report-footer p {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+    }
+    .back-link {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: background 0.18s, color 0.18s;
+    }
+    .back-link:hover { background: var(--accent); color: #fff; }
+
+    @media print {
+      body { font-size: 14px; background: #fff; }
+      .doc { padding: 40px 32px; max-width: 100%; }
+      .report-footer a { display: none; }
+      .report-section { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<article class="doc" role="main">
+
+  <!-- Cover -->
+  <header class="cover">
+    <div class="cover-kicker">HCI Evaluation Report · 2026</div>
+    <h1>Tarun Kumar Bajotra Portfolio — HCI Analysis</h1>
+    <p class="cover-sub">Human-Computer Interaction evaluation applying Shneiderman, Norman &amp; Nielsen guidelines alongside KLM, Fitts' Law and Hick-Hyman models.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">Author<span>Tarun Kumar Bajotra</span></div>
+      <div class="cover-meta-item">Programme<span>B.Tech. Computer Engineering</span></div>
+      <div class="cover-meta-item">Institution<span>VJTI Mumbai</span></div>
+      <div class="cover-meta-item">Subject<span>Human-Computer Interaction</span></div>
+    </div>
+  </header>
+
+  <!-- TOC -->
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#users">Users &amp; Tasks</a></li>
+      <li><a href="#interface">Interface</a></li>
+      <li><a href="#guidelines">HCI Guidelines</a></li>
+      <li><a href="#models">Checking With Models</a></li>
+      <li><a href="#norman-model">Norman's Model of Interaction</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1. Overview -->
+  <section class="report-section" id="overview">
+    <div class="section-number">Section 1</div>
+    <h2 class="section-title">Overview</h2>
+    <p>My portfolio website presents my education, engineering projects, research experience, technical blogs, and professional profiles on a single page. It has been designed and evaluated using the HCI guidelines and models covered in the course.</p>
+    <div class="callout">
+      <strong>Goal:</strong> satisfy the <em>5 Es of usability</em> — effective, efficient, error-free, easy, and enjoyable — for every user type who visits the site.
+    </div>
+    <div class="metrics-row">
+      <div class="metric-card"><div class="val">5</div><div class="lbl">Usability Es</div></div>
+      <div class="metric-card"><div class="val">4</div><div class="lbl">Key Tasks</div></div>
+      <div class="metric-card"><div class="val">3</div><div class="lbl">User Personas</div></div>
+      <div class="metric-card"><div class="val">6</div><div class="lbl">Page Regions</div></div>
+    </div>
+  </section>
+
+  <!-- 2. Users & Tasks -->
+  <section class="report-section" id="users">
+    <div class="section-number">Section 2</div>
+    <h2 class="section-title">Users &amp; Tasks</h2>
+
+    <h3 class="sub-title">Representative Users</h3>
+    <ul>
+      <li><strong>Recruiter on a phone</strong> — skims quickly, needs contact details and project highlights at a glance.</li>
+      <li><strong>Engineer reviewing project details</strong> — digs into technical depth, wants clear metrics and methodology.</li>
+      <li><strong>Keyboard-only user</strong> — navigates without a pointing device, relies on shortcuts and focus management.</li>
+    </ul>
+
+    <h3 class="sub-title">Benchmark Tasks</h3>
+    <table class="report-table" aria-label="Benchmark tasks">
+      <thead>
+        <tr><th>Task</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>T1</strong></td><td>Find how many requests the rate-limiter was tested with.</td></tr>
+        <tr><td><strong>T2</strong></td><td>Open the MaargAI blog post, then navigate to the next one.</td></tr>
+        <tr><td><strong>T3</strong></td><td>Change the colour theme (dark ↔ light).</td></tr>
+        <tr><td><strong>T4</strong></td><td>Copy my email address to the clipboard.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 3. Interface -->
+  <section class="report-section" id="interface">
+    <div class="section-number">Section 3</div>
+    <h2 class="section-title">Interface</h2>
+
+    <p>The portfolio is a <strong>single long page</strong> with eight named sections: About, Academics, Experience, Projects, Simulators, Skills, Blogs, and Contact. Project case studies and blog posts open in focused dialogs, keeping the user on the same URL at all times.</p>
+
+    <h3 class="sub-title">Page Structure — 6 Regions &amp; 5 Overlays</h3>
+    <div class="interface-diagram" aria-label="Page structure diagram">
+      <div class="region"><span class="region-label">Sticky Header</span><span>Name · section links · ⌘K command palette · theme toggle</span></div>
+      <div class="region"><span class="region-label">Intro / Hero</span><span>Who, what, profile links, live packet-capture widget</span></div>
+      <div class="region"><span class="region-label">About</span><span>Education · Research Internship · Skills · Certifications</span></div>
+      <div class="region"><span class="region-label">Projects</span><span>3 filterable project rows — problem · approach · results</span></div>
+      <div class="region"><span class="region-label">Blogs</span><span>4 filterable article cards with reading-time estimates</span></div>
+      <div class="region"><span class="region-label">Contact</span><span>Copy email / phone · LinkedIn · GitHub · TryHackMe</span></div>
+      <div class="region"><span class="region-label overlay">Overlay</span><span>Project case-study dialog — Previous / Next arrows step through projects</span></div>
+      <div class="region"><span class="region-label overlay">Overlay</span><span>Blog reader — reading progress bar; arrows step between posts</span></div>
+      <div class="region"><span class="region-label overlay">Overlay</span><span>Command palette  <code>/</code>  or  <code>Ctrl+K</code> — search &amp; quick actions</span></div>
+      <div class="region"><span class="region-label overlay">Overlay</span><span>Shortcuts reference panel  <code>?</code></span></div>
+      <div class="region"><span class="region-label overlay">Overlay</span><span>Interactive system simulators (Logistics · Traffic · Enterprise AD)</span></div>
+    </div>
+
+    <h3 class="sub-title">Design Principles Applied</h3>
+    <div class="tags">
+      <span class="tag">Unity</span>
+      <span class="tag">Emphasis</span>
+      <span class="tag">Contrast</span>
+      <span class="tag">Rhythm</span>
+      <span class="tag">Ordered Grid</span>
+    </div>
+    <ul>
+      <li><strong>Unity</strong> — one font family (Inter), one accent colour throughout.</li>
+      <li><strong>Emphasis</strong> — bold section titles, lighter body text, accent on key numbers.</li>
+      <li><strong>Contrast</strong> — dark text on lighter backgrounds (both modes pass WCAG AA).</li>
+      <li><strong>Rhythm</strong> — identical card layout for every project and blog post.</li>
+      <li><strong>Ordered Grid</strong> — a single-column reading spine; grids only appear inside cards.</li>
+    </ul>
+  </section>
+
+  <!-- 4. Guidelines -->
+  <section class="report-section" id="guidelines">
+    <div class="section-number">Section 4</div>
+    <h2 class="section-title">HCI Guidelines I Used</h2>
+
+    <h3 class="sub-title">Shneiderman's Eight Golden Rules</h3>
+    <table class="report-table" aria-label="Shneiderman rules">
+      <thead><tr><th>Rule</th><th>How I used it</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Strive for consistency</strong></td><td>Projects and posts share the same card layout; every case study dialog follows the same three-section structure (Problem → Approach → Results).</td></tr>
+        <tr><td><strong>Cater to universal usability</strong></td><td>Keyboard shortcuts for experienced users; plain links and buttons for everyone else. Dark mode and adjustable text size available.</td></tr>
+        <tr><td><strong>Offer informative feedback</strong></td><td>A toast notification appears after copying the email or switching theme with <code>T</code>. The active section is underlined in the sticky nav.</td></tr>
+        <tr><td><strong>Design dialogs to yield closure</strong></td><td>"Email address copied." tells the user the task is definitively done.</td></tr>
+        <tr><td><strong>Prevent errors</strong></td><td>Settings expose only fixed valid choices; no free-text input fields exist on this page.</td></tr>
+        <tr><td><strong>Permit easy reversal of actions</strong></td><td><code>Esc</code> closes any open overlay; pressing <code>T</code> again undoes the theme switch.</td></tr>
+        <tr><td><strong>Support internal locus of control</strong></td><td>Nothing moves or auto-plays without user initiation; animations can be disabled via the settings panel.</td></tr>
+        <tr><td><strong>Reduce short-term memory load</strong></td><td>Key results are visible on each card row without clicking; keyboard shortcuts are listed in the footer.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-title">Norman's Seven Principles</h3>
+    <table class="report-table" aria-label="Norman principles">
+      <thead><tr><th>Principle</th><th>How I used it</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Knowledge in the world &amp; in the head</strong></td><td>Visible links for casual visitors; keyboard shortcuts for returning users who remember them.</td></tr>
+        <tr><td><strong>Simplify task structures</strong></td><td>Every benchmark task completes in three steps or fewer.</td></tr>
+        <tr><td><strong>Make things visible</strong></td><td>The sticky menu is always on screen; card rows and buttons are visually afforded as clickable.</td></tr>
+        <tr><td><strong>Get the mapping right</strong></td><td>Previous and Next sit left and right — matching the <code>←</code> / <code>→</code> keys; menu items 1–4 map to the first four sections.</td></tr>
+        <tr><td><strong>Exploit constraints</strong></td><td>Only one dialog can be open at a time — clicking another project closes the first.</td></tr>
+        <tr><td><strong>Design for error</strong></td><td>If clipboard access fails, the email is selected in the DOM and the toast explains how to copy it manually.</td></tr>
+        <tr><td><strong>Standardise</strong></td><td>Conventional layout: name top-left, navigation top-right, footer at the bottom — matching web conventions users already know.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-title">Nielsen's Ten Heuristics</h3>
+    <table class="report-table" aria-label="Nielsen heuristics">
+      <thead><tr><th>Heuristic</th><th>How I used it</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Visibility of system status</strong></td><td>A thin scroll-progress line at the top of the page; a reading-progress bar inside blog-post dialogs.</td></tr>
+        <tr><td><strong>Match with the real world</strong></td><td>Plain labels such as "Copy email" and "Read case study" — no jargon.</td></tr>
+        <tr><td><strong>User control and freedom</strong></td><td><code>Esc</code>, a visible close button, or clicking outside all close overlays; theme switch can be undone.</td></tr>
+        <tr><td><strong>Consistency and standards</strong></td><td>Identical card layout everywhere; standard button and dialog patterns.</td></tr>
+        <tr><td><strong>Error prevention</strong></td><td>No user-editable forms; settings are presented as fixed choices, not free input.</td></tr>
+        <tr><td><strong>Recognition rather than recall</strong></td><td>Project metrics are visible on each card row without opening anything; the command palette shows matches as you type.</td></tr>
+        <tr><td><strong>Flexibility and efficiency of use</strong></td><td><code>/</code> opens search; keys <code>1–4</code> jump to sections; <code>T</code> toggles theme; arrow keys navigate inside dialogs.</td></tr>
+        <tr><td><strong>Aesthetic and minimalist design</strong></td><td>One column, three featured projects, four blog posts — detail appears only on demand inside dialogs.</td></tr>
+        <tr><td><strong>Help users recover from errors</strong></td><td>A search with zero results suggests alternate terms and offers to browse all sections.</td></tr>
+        <tr><td><strong>Help and documentation</strong></td><td><code>?</code> opens the full keyboard-shortcuts reference panel.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5. Models -->
+  <section class="report-section" id="models">
+    <div class="section-number">Section 5</div>
+    <h2 class="section-title">Checking it with Models</h2>
+
+    <h3 class="sub-title">Keystroke-Level Model (KLM)</h3>
+    <div class="callout gold">
+      <strong>Operator times:</strong>
+      K (keystroke) = 0.28 s &nbsp;·&nbsp;
+      P (pointer move) = 1.10 s &nbsp;·&nbsp;
+      B (button click) = 0.20 s &nbsp;·&nbsp;
+      M (mental prepare) = 1.35 s
+    </div>
+
+    <table class="report-table" aria-label="KLM task analysis">
+      <thead>
+        <tr><th>Task</th><th>Mouse sequence</th><th>Mouse time</th><th>Keyboard sequence</th><th>Key time</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>T1</strong></td>
+          <td>M P B (click Projects — answer is on the row)</td>
+          <td class="val">2.65 s</td>
+          <td>M K (press <code>2</code>)</td>
+          <td class="val green">1.63 s</td>
+        </tr>
+        <tr>
+          <td><strong>T2</strong></td>
+          <td>3 × (M P B) — open Blogs, open post, click Next</td>
+          <td class="val">7.95 s</td>
+          <td>M 7K M K</td>
+          <td class="val green">4.94 s</td>
+        </tr>
+        <tr>
+          <td><strong>T3</strong></td>
+          <td>2 × (M P B) — open header, click theme icon</td>
+          <td class="val">5.30 s</td>
+          <td>M K (press <code>T</code>)</td>
+          <td class="val green">1.63 s</td>
+        </tr>
+        <tr>
+          <td><strong>T4</strong></td>
+          <td>2 × (M P B) — scroll to Contact, click Copy</td>
+          <td class="val">5.30 s</td>
+          <td>M 6K</td>
+          <td class="val green">3.03 s</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pull-quote">
+      Shortcuts cut the time for every task by <strong>38–69%</strong>.<br>
+      No task requires opening a project dialog to find its answer.
+    </div>
+
+    <h3 class="sub-title">Fitts' Law</h3>
+    <p>
+      <code>ID = log<sub>2</sub>(D / W + 1)</code>. A plain 20 px text link 300 px away scores
+      <strong class="hi">4.0 bits</strong>. A full-width 150 px project card row at the same distance scores
+      only <strong class="hi">1.58 bits</strong>.
+    </p>
+    <p>
+      Consequence: the entire card row is a click target (not just the button inside it),
+      and all interactive buttons are at least <strong>44 px tall</strong> to minimise index-of-difficulty.
+    </p>
+
+    <h3 class="sub-title">Hick–Hyman Law</h3>
+    <p>
+      <code>T = k · log<sub>2</sub>(N)</code>. Four primary navigation items cost
+      <strong>2.0 bits</strong> of decision time. Expanding to seven items would cost
+      <strong>2.81 bits</strong> — roughly 40% more time to select.
+    </p>
+    <p>
+      This directly drove the limits: <strong>four</strong> sticky nav sections,
+      <strong>three</strong> featured projects, <strong>four</strong> blog posts.
+      Filter chips inside sections allow progressive disclosure without crowding the top-level menu.
+    </p>
+  </section>
+
+  <!-- 6. Norman's Interaction Model -->
+  <section class="report-section" id="norman-model">
+    <div class="section-number">Section 6</div>
+    <h2 class="section-title">Norman's Model of Interaction</h2>
+
+    <p>
+      Norman's model frames interaction around two gulfs: the
+      <strong>gulf of execution</strong> (does the user know what to do?) and the
+      <strong>gulf of evaluation</strong> (does the user know whether it worked?).
+      All four benchmark tasks were checked against both.
+    </p>
+
+    <h3 class="sub-title">T1 — Find the test request count</h3>
+    <div class="gulf-grid">
+      <div class="gulf-box"><h4>Gulf of Execution</h4><p>The Projects section is linked from the sticky nav. The metric is printed directly on the project card row — no dialog needed.</p></div>
+      <div class="gulf-box"><h4>Gulf of Evaluation</h4><p>The number is visible immediately in the card; no ambiguity about whether it has loaded.</p></div>
+    </div>
+
+    <h3 class="sub-title">T2 — Read a blog post, then the next</h3>
+    <div class="gulf-grid">
+      <div class="gulf-box"><h4>Gulf of Execution</h4><p>Blog link in the sticky nav. Each card has a labelled "Read article" button. The reader shows a Next button with the next post's title visible.</p></div>
+      <div class="gulf-box"><h4>Gulf of Evaluation</h4><p>The dialog opens with the post title in a large heading. The title changes when Next is clicked, confirming navigation.</p></div>
+    </div>
+
+    <h3 class="sub-title">T3 — Change the colour theme</h3>
+    <div class="gulf-grid">
+      <div class="gulf-box"><h4>Gulf of Execution</h4><p>A sun/moon icon button sits in the header. The <code>T</code> shortcut is listed in the shortcuts panel (<code>?</code>).</p></div>
+      <div class="gulf-box"><h4>Gulf of Evaluation</h4><p>Colours change instantly across the whole page. Using the keyboard shortcut also triggers a toast: "Dark theme on."</p></div>
+    </div>
+
+    <h3 class="sub-title">T4 — Copy the email address</h3>
+    <div class="gulf-grid">
+      <div class="gulf-box"><h4>Gulf of Execution</h4><p>Contact link in the nav. A clearly labelled "📋 Copy Email" button sits beside the email address in the Contact section.</p></div>
+      <div class="gulf-box"><h4>Gulf of Evaluation</h4><p>A toast notification reads "Email address copied to clipboard!" immediately after the action.</p></div>
+    </div>
+  </section>
+
+  <!-- 7. Conclusion -->
+  <section class="report-section" id="conclusion">
+    <div class="section-number">Section 7</div>
+    <h2 class="section-title">Conclusion</h2>
+
+    <p>
+      The portfolio follows the three sets of guidelines taught in the course.
+      The formal models (KLM, Fitts' Law, Hick-Hyman) provide quantitative backing for the core design
+      decisions: <strong>few top-level choices</strong> to minimise decision time,
+      <strong>large click targets</strong> to reduce pointing effort,
+      <strong>key information visible on each card row</strong> so no dialog needs to be opened for a
+      quick lookup, and <strong>keyboard shortcuts up to 69% faster</strong> for frequent users.
+    </p>
+
+    <p>
+      Keeping the interface minimal was the single most deliberate decision. Every element that did not
+      directly serve one of the four benchmark tasks — or reduce cognitive load for a target user persona
+      — was removed.
+    </p>
+
+    <div class="callout green">
+      <strong>Summary:</strong> a single-page portfolio that is effective (tasks complete in ≤ 3 steps),
+      efficient (shortcuts cut time by up to 69%), error-free (no forms, guided actions, clear reversals),
+      easy (conventional layout, visible affordances), and enjoyable (polished dark/light theme with
+      smooth micro-animations).
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="report-footer">
+    <p>Tarun Kumar Bajotra · B.Tech. Computer Engineering · VJTI Mumbai · 2026</p>
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
+  </footer>
+
+</article>
+
+<script>
+  const sections = document.querySelectorAll('.report-section');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  sections.forEach(s => {
+    const r = s.getBoundingClientRect();
+    if (r.top < window.innerHeight) s.classList.add('visible');
+    else io.observe(s);
+  });
+</script>
+
+</body>
+</html>

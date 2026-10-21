@@ -1,0 +1,119 @@
+/* ==========================================================================
+   HCI Principles Inspector (Luxury / Editorial Lens Mode)
+   Restrained, Architectural Badges, and Editorial Principle Cards
+   ========================================================================== */
+
+/* Active Lens Mode State on Body */
+body.hci-lens-active {
+  cursor: crosshair;
+}
+
+body.hci-lens-active .hci-highlighted {
+  outline: 1px dashed var(--color-accent) !important;
+  outline-offset: 4px !important;
+  animation: hciOutlinePulse 2.5s infinite var(--ease-luxury);
+}
+
+@keyframes hciOutlinePulse {
+  0% { outline-color: rgba(212, 175, 55, 0.3); }
+  50% { outline-color: var(--color-accent); }
+  100% { outline-color: rgba(212, 175, 55, 0.3); }
+}
+
+/* Badge Floating Over Element: Razor-Sharp Rectangular Editorial Pin */
+.hci-badge-pill {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: var(--color-text-primary);
+  color: var(--color-bg-base);
+  border: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.hci-badge-pill:hover, .hci-badge-pill:focus-visible {
+  transform: translateY(-2px);
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.hci-badge-pill .badge-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--color-accent);
+}
+
+.hci-badge-pill:hover .badge-dot {
+  background: #FFFFFF;
+}
+
+/* Principle Detail Modal Styles */
+.principle-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.principle-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 20px;
+}
+
+.h-code-lg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--color-text-primary);
+  border-top: 2px solid var(--color-accent);
+  background: var(--color-bg-muted);
+  color: var(--color-text-primary);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.principle-detail-block h5 {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.principle-detail-block p {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.highlight-box {
+  padding: 16px 20px;
+  background: var(--color-bg-muted);
+  border-left: 2px solid var(--color-accent);
+  color: var(--color-text-primary) !important;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+}

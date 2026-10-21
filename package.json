@@ -1,0 +1,20 @@
+{
+  "name": "tarun-bajotra-hci-profile",
+  "version": "1.0.0",
+  "description": "Interactive Personal Profile & Usability Evaluation Suite for Tarun Kumar Bajotra (VJTI Mumbai)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "hci",
+    "human-computer-interaction",
+    "usability-evaluation",
+    "portfolio",
+    "cybersecurity",
+    "vjti"
+  ],
+  "author": "Tarun Kumar Bajotra",
+  "license": "MIT"
+}

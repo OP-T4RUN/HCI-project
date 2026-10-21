@@ -1,0 +1,492 @@
+/* ==========================================================================
+   Usability Evaluation Suite Stylesheet (Luxury / Editorial)
+   System Usability Scale (SUS), Heuristic Matrix, Benchmark HUD, Command Palette
+   ========================================================================== */
+
+/* 1. SUS Dashboard */
+.sus-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.sus-score-hero {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 36px;
+  align-items: center;
+  padding: 48px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-top: 2px solid var(--color-accent);
+  box-shadow: var(--shadow-card);
+}
+
+.sus-score-dial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+  border: 1px solid var(--color-text-primary);
+  border-top: 2px solid var(--color-accent);
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-subtle);
+  margin: 0 auto;
+}
+
+.sus-score-num {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.sus-score-max {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+.sus-badge-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.sus-score-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.sus-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sus-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.sus-scale-legend {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-accent);
+}
+
+.sus-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-top: 1px solid var(--color-border-subtle);
+  gap: 20px;
+  transition: all var(--transition-normal);
+}
+
+.sus-item:hover {
+  border-color: var(--color-text-primary);
+  background: var(--color-bg-surface);
+}
+
+.sus-item-text {
+  display: flex;
+  gap: 16px;
+  font-size: 0.98rem;
+  color: var(--color-text-primary);
+}
+
+.sus-q-num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.sus-options {
+  display: flex;
+  gap: 6px;
+}
+
+.sus-btn {
+  width: 38px;
+  height: 38px;
+  background: var(--color-bg-base);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sus-btn:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-accent);
+}
+
+.sus-btn.selected {
+  background: var(--color-text-primary);
+  color: var(--color-bg-base);
+  border-color: var(--color-text-primary);
+}
+
+/* 2. Heuristic Audit Matrix Table */
+.heuristic-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-subtle);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+}
+
+.heuristic-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.heuristic-table th, .heuristic-table td {
+  padding: 20px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.heuristic-table th {
+  background: var(--color-bg-muted);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+}
+
+.heuristic-row {
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.heuristic-row:hover {
+  background: var(--color-bg-surface);
+}
+
+.heuristic-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.h-code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.h-evidence {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.badge-pill.pass {
+  padding: 4px 12px;
+  border: 1px solid var(--color-success);
+  color: var(--color-success);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* 3. Usability Benchmark Runner HUD */
+.benchmark-hud {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 700px;
+  z-index: 2500;
+  border: 1px solid var(--color-text-primary);
+  border-top: 2px solid var(--color-accent);
+  box-shadow: var(--shadow-hero);
+  padding: 24px 32px;
+  background: var(--color-bg-surface);
+  animation: hudSlideUp 0.4s var(--ease-luxury);
+}
+
+@keyframes hudSlideUp {
+  from { transform: translate(-50%, 60px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 10px;
+}
+
+.hud-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+}
+
+.hud-progress {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.hud-task-body strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+
+.hud-task-body p {
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+}
+
+.hud-hint {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.hud-metrics {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+}
+
+.hud-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* Benchmark Results Modal */
+.results-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border: 1px solid var(--color-success);
+  color: var(--color-success);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.results-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.results-stat-card {
+  padding: 20px;
+  border: 1px solid var(--color-border-subtle);
+  border-top: 1px solid var(--color-text-primary);
+  background: var(--color-bg-base);
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.stat-lbl {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+
+.benchmark-table th, .benchmark-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.results-takeaway {
+  padding: 18px 24px;
+  background: var(--color-bg-muted);
+  border-left: 2px solid var(--color-accent);
+}
+
+.results-takeaway h5 {
+  font-family: var(--font-serif);
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+
+/* 4. Command Palette (Ctrl+K) */
+.palette-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 3000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.palette-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.palette-container {
+  width: 100%;
+  max-width: 680px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-base);
+  box-shadow: var(--shadow-hero);
+  overflow: hidden;
+}
+
+.palette-search-box {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  gap: 16px;
+}
+
+.palette-search-icon { font-size: 1.1rem; }
+
+.palette-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  outline: none;
+}
+
+.palette-input::placeholder {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.palette-esc-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-muted);
+}
+
+.palette-results {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.palette-category-title {
+  padding: 10px 16px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+}
+
+.palette-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.palette-item.selected, .palette-item:hover {
+  background: var(--color-bg-muted);
+  border-left: 2px solid var(--color-accent);
+}
+
+.palette-item-icon { font-size: 1.1rem; }
+.palette-item-title { flex-grow: 1; font-size: 0.95rem; font-weight: 500; color: var(--color-text-primary); }
+.palette-item-cat { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-text-muted); }
+
+.palette-empty {
+  padding: 36px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.palette-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
